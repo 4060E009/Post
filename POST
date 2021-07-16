@@ -128,5 +128,7 @@ class Post() {
 }
 
 =====================================================================================
+Logcat(run)
+**
 2021-07-16 13:45:37.611 4328-4328/com.example.httprequest D/HTTP-Test: onCreate:null
 2021-07-16 13:45:38.169 4328-4412/com.example.httprequest D/HTTP-Test: onResponse: postAPI => {"houseNumber":"202號","master":"許宅邸","floor":"6樓","symbol":"之1","houseSerialNumber":"123456789","gasNumber":"020216021","points":9219,"member":[{"name":"","residentSerialNumber":"1111"},{"name":"","residentSerialNumber":"2222"}]}
