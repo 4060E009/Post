@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         post.postAPI()
 //        Log.d(TAG, "onCreate:" +post.getSerialNumber() )
 
+        //a = User
         post.getResult(object: Post.OnRequestListener {
             override fun onSuccess(result: Any) {
                 (result as User).let { a ->
@@ -39,7 +40,6 @@ package com.example.httprequest
 
 import android.util.Log
 import okhttp3.*
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
@@ -55,7 +55,7 @@ data class User(
     val points : Int,
     val member : ArrayList<Member>
 )
-
+//因member多層則與其他資料分開來，另外寫成另一個data class
 data class Member (
     val residentSerialNumber : String
 )
@@ -89,8 +89,8 @@ class Post() {
 //                Log.d(TAG, "onResponse: master -> " + itemList.getString("master"))
                 val item = itemList.getJSONArray("member")
 //
-//                Log.d(TAG, "onResponse: item list: " + item.getJSONObject(0).getString("residentSerialNumber"))
-//                Log.d(TAG, "onResponse: item list: " + item.getJSONObject(1).getString("residentSerialNumber"))
+                Log.d(TAG, "onResponse: item list: " + item.getJSONObject(0).getString("residentSerialNumber"))
+                Log.d(TAG, "onResponse: item list: " + item.getJSONObject(1).getString("residentSerialNumber"))
 //
 //                val reposDataList = arrayListOf<String>()
 //
@@ -131,7 +131,7 @@ class Post() {
 //                Log.d(TAG, "onResponse: User => " + myUser)
             }
         })
-        return myUser
+        return myUser               //為異步，則無法return(onCreate = null)
     }
 
     // wei
@@ -155,6 +155,7 @@ class Post() {
 
                 val reposDataList = arrayListOf<Member>()
 
+                //先將member轉為所需格式
                 (0 until itemList.getJSONArray("member").length()).forEach {
                     val json = itemList.getJSONArray("member")[it] as JSONObject
                     val member = Member(residentSerialNumber = json.getString("residentSerialNumber"))
@@ -169,7 +170,7 @@ class Post() {
                     houseSerialNumber = itemList.getString("houseSerialNumber"),
                     gasNumber = itemList.getString("gasNumber"),
                     points = itemList.getInt("points"),
-                    member = reposDataList
+                    member = reposDataList          //帶入轉好的值
                 )
                 onRequestListener?.onSuccess(myUser)
             }
