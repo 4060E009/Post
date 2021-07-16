@@ -1,3 +1,25 @@
+MainActivity.kt
+**
+package com.example.httprequest
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import org.json.JSONArray
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val post = Post()
+        post.postAPI()
+        Log.d(TAG, "onCreate:" +post.getSerialNumber() )
+    }
+}
+=====================================================================================
+Post.kt
+**
 package com.example.httprequest
 
 import android.util.Log
@@ -106,9 +128,5 @@ class Post() {
 }
 
 =====================================================================================
-2021-07-15 23:50:01.295 14309-14309/com.example.httprequest D/HTTP-Test: onCreate: null
-2021-07-15 23:50:02.106 14309-14333/com.example.httprequest D/HTTP-Test: onResponse: getSerialNumber => {"houseNumber":"202號","master":"許宅邸","floor":"6樓","symbol":"之1","houseSerialNumber":"123456789","gasNumber":"020216021","points":9219,"member":[{"name":"","residentSerialNumber":"1111"},{"name":"","residentSerialNumber":"2222"}]}
-2021-07-15 23:50:02.183 14309-14332/com.example.httprequest D/HTTP-Test: onResponse: master -> 許宅邸
-2021-07-15 23:50:02.183 14309-14332/com.example.httprequest D/HTTP-Test: onResponse: item list: 1111
-2021-07-15 23:50:02.183 14309-14332/com.example.httprequest D/HTTP-Test: onResponse: item list: 2222
-2021-07-15 23:50:02.184 14309-14332/com.example.httprequest D/HTTP-Test: onResponse: postAPI => {"houseNumber":"202號","master":"許宅邸","floor":"6樓","symbol":"之1","houseSerialNumber":"123456789","gasNumber":"020216021","points":9219,"member":[{"name":"","residentSerialNumber":"1111"},{"name":"","residentSerialNumber":"2222"}]}
+2021-07-16 13:45:37.611 4328-4328/com.example.httprequest D/HTTP-Test: onCreate:null
+2021-07-16 13:45:38.169 4328-4412/com.example.httprequest D/HTTP-Test: onResponse: postAPI => {"houseNumber":"202號","master":"許宅邸","floor":"6樓","symbol":"之1","houseSerialNumber":"123456789","gasNumber":"020216021","points":9219,"member":[{"name":"","residentSerialNumber":"1111"},{"name":"","residentSerialNumber":"2222"}]}
