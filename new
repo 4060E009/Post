@@ -1,0 +1,246 @@
+https://jsoneditoronline.org/
+https://web.postman.co/workspace/My-Workspace~ba467167-d4a1-470a-82f8-5abcd825ea8f/request/16686081-3f7cf8f2-edfd-412b-9035-a2e13ad82e5d
+
+
+MainActivity.kt
+**
+package com.example.httprequest
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import org.json.JSONArray
+import kotlin.math.log
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val post = Post()
+        post.getUserInfo( "DUCCMS", "123456789", "123456789", object: Post.OnRequestListener {
+            override fun onError() {
+                Log.d(TAG, "onError: ")
+            }
+
+            override fun onSuccess(result: Any) {
+                Log.d(TAG, "onSuccess: result" + result)
+            }
+        })
+//        post.postAPI()
+//        Log.d(TAG, "onCreate:" +post.getSerialNumber() )
+
+        //a = User
+        /*
+        post.getResult(object: Post.OnRequestListener {
+            override fun onSuccess(result: Any) {
+                (result as User).let { a ->
+                    a.member.forEach {
+                        Log.d(TAG, "" + it.residentSerialNumber )
+                    }
+                }
+            }
+
+            override fun onError() {
+                Log.d(TAG, "Failed" )
+            }
+        })
+
+         */
+
+    }
+}
+========================================================================================
+Post.kt
+**
+package com.example.httprequest
+
+import android.util.Log
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
+
+val TAG = "HTTP-Test"
+
+data class User(
+    val houseNumber : String,
+    val master : String,
+    val floor  : String,
+    val symbol : String,
+    val houseSerialNumber : String,
+    val gasNumber : String,
+    val points : Int,
+    val member : ArrayList<Member>
+)
+//因member多層則與其他資料分開來，另外寫成另一個data class
+data class Member (
+    val residentSerialNumber : String
+)
+
+class Post() {
+    var client: OkHttpClient? = null
+//    var request: Request? = null
+//    val builder = FormBody.Builder()
+    private var onRequestListener : OnRequestListener? = null
+    private val baseUrl = "https://asia-east2-ductech-cms.cloudfunctions.net/"
+
+    init {
+//        builder.add("ProjectName","DUCCMS")
+//        builder.add("HouseSerialNumber","123456789")
+//        val formBody = builder.build()
+        client = OkHttpClient()
+//        request = Request.Builder()
+//            .method("POST",formBody)
+//            .url(baseUrl + "GetUserResident")
+//            .build()
+    }
+
+    /*
+    fun postAPI() {
+        client?.newCall(request)?.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure: " + e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body()?.string()
+                val itemList = JSONObject(responseStr)
+//                Log.d(TAG, "onResponse: master -> " + itemList.getString("master"))
+                val item = itemList.getJSONArray("member")
+//
+                Log.d(TAG, "onResponse: item list: " + item.getJSONObject(0).getString("residentSerialNumber"))
+                Log.d(TAG, "onResponse: item list: " + item.getJSONObject(1).getString("residentSerialNumber"))
+//
+//                val reposDataList = arrayListOf<String>()
+//
+//                for (i in 0..itemList.length() - 1) {
+//                    reposDataList.add(itemList[i].toString())
+//                }
+//                reposDataList.forEach {
+//                    Log.d(TAG, "onResponse: " + it)
+//                }
+                Log.d(TAG, "onResponse: postAPI => " + responseStr)
+
+            }
+        })
+    }
+
+     */
+
+    // get user info
+    fun getUserInfo(projectName: String, residentSerialNumber: String, phoneID: String, listener: OnRequestListener) {
+        onRequestListener = listener
+        var request: Request? = null
+        val builder = FormBody.Builder()
+        builder.add("ProjectName", projectName)
+        builder.add("HouseSerialNumber", residentSerialNumber)
+        builder.add("PhoneID", phoneID)
+        val formBody = builder.build()
+        request = Request.Builder()
+            .method("POST",formBody)
+            .url(baseUrl + "BindUserData")
+            .build()
+        client?.newCall(request)?.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure: " + e)
+                onRequestListener?.onError()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body()?.string()
+//                val itemList = JSONObject(responseStr)
+                // TODO("response to json object")
+//                onRequestListener?.onSuccess(itemList)
+                onRequestListener?.onSuccess(responseStr!!)
+                Log.d(TAG, "onResponse: get user info" + responseStr)
+            }
+        })
+
+    }
+
+    /*
+    fun getSerialNumber() : User? {
+        var myUser: User? = null
+        client?.newCall(request)?.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure: " + e)
+//                myUser = User("","","","","","",0,JSONArray("[0,0]"))
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body()?.string()
+                val itemList = JSONObject(responseStr)
+
+//                myUser = User(
+//                    houseNumber = itemList.getString("houseNumber"),
+//                    master = itemList.getString("master"),
+//                    floor = itemList.getString("floor"),
+//                    symbol = itemList.getString("symbol"),
+//                    houseSerialNumber = itemList.getString("houseSerialNumber"),
+//                    gasNumber = itemList.getString("gasNumber"),
+//                    points = itemList.getInt("points"),
+//                    member = itemList.getJSONArray("member"),
+//                )
+//                Log.d(TAG, "onResponse: User => " + myUser)
+            }
+        })
+        return myUser               //為異步，則無法return(onCreate = null)
+    }
+
+     */
+
+    // wei
+
+    /*
+
+    fun getResult(listener: OnRequestListener) {
+
+        this.onRequestListener = listener
+
+        var myUser: User
+        client?.newCall(request)?.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure: " + e)
+                onRequestListener?.onError()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body()?.string()
+                val itemList = JSONObject(responseStr)
+
+                val reposDataList = arrayListOf<Member>()
+
+                //先將member轉為所需格式
+                (0 until itemList.getJSONArray("member").length()).forEach {
+                    val json = itemList.getJSONArray("member")[it] as JSONObject
+                    val member = Member(residentSerialNumber = json.getString("residentSerialNumber"))
+                    reposDataList.add(member)
+                }
+
+                myUser = User(
+                    houseNumber = itemList.getString("houseNumber"),
+                    master = itemList.getString("master"),
+                    floor = itemList.getString("floor"),
+                    symbol = itemList.getString("symbol"),
+                    houseSerialNumber = itemList.getString("houseSerialNumber"),
+                    gasNumber = itemList.getString("gasNumber"),
+                    points = itemList.getInt("points"),
+                    member = reposDataList          //帶入轉好的值
+                )
+                onRequestListener?.onSuccess(myUser)
+            }
+        })
+    }
+
+     */
+
+    interface OnRequestListener {
+        fun onSuccess(result: Any)
+        fun onError()
+    }
+}
+========================================================================================
+Logcat
+**
+2021-08-17 21:41:19.491 5439-5462/com.example.httprequest D/HTTP-Test: onSuccess: resultNULL
+2021-08-17 21:41:19.491 5439-5462/com.example.httprequest D/HTTP-Test: onResponse: get user infoNULL
