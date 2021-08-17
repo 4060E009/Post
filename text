@@ -119,7 +119,7 @@ class Post() {
         fun onError()
     }
 }
-========================================
+=========================================================================================
 MainActivity.kt
 **
 package com.example.httprequest
@@ -150,3 +150,85 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+===============================================================================
+run
+**
+
+08/17 18:19:18: Launching 'app' on Xiaomi Redmi Note 5.
+Install successfully finished in 2 s 579 ms.
+$ adb shell am start -n "com.example.httprequest/com.example.httprequest.MainActivity" -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
+Connected to process 13773 on device 'xiaomi-redmi_note_5-4283c907'.
+Capturing and displaying logcat messages from application. This behavior can be disabled in the "Logcat output" section of the "Debugger" settings page.
+I/libthemeutils: Theme： libthemeutil.so load success
+W/ple.httpreques: Long monitor contention with owner main (13773) at void android.content.res.AssetManager.nativeSetConfiguration(long, int, int, java.lang.String, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)(AssetManager.java:-2) waiters=0 in void android.app.ActivityThread$ApplicationThread.updatePendingConfiguration(android.content.res.Configuration) for 1.087s
+I/Perf: Connecting to perf service.
+I/FirebaseApp: Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+I/FirebaseInitProvider: FirebaseApp initialization successful
+W/ple.httpreques: Accessing hidden method Landroid/graphics/drawable/Drawable;->getOpticalInsets()Landroid/graphics/Insets; (light greylist, linking)
+    Accessing hidden field Landroid/graphics/Insets;->left:I (light greylist, linking)
+W/ple.httpreques: Accessing hidden field Landroid/graphics/Insets;->right:I (light greylist, linking)
+    Accessing hidden field Landroid/graphics/Insets;->top:I (light greylist, linking)
+    Accessing hidden field Landroid/graphics/Insets;->bottom:I (light greylist, linking)
+W/ple.httpreques: Accessing hidden field Landroid/view/WindowInsets;->CONSUMED:Landroid/view/WindowInsets; (light greylist, reflection)
+W/ple.httpreques: Accessing hidden method Landroid/view/View;->getAccessibilityDelegate()Landroid/view/View$AccessibilityDelegate; (light greylist, linking)
+W/ple.httpreques: Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (light greylist, reflection)
+W/ple.httpreques: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (light greylist, reflection)
+D/NetworkSecurityConfig: No Network Security Config specified, using platform default
+W/ple.httpreques: Accessing hidden method Ldalvik/system/CloseGuard;->get()Ldalvik/system/CloseGuard; (light greylist, reflection)
+    Accessing hidden method Ldalvik/system/CloseGuard;->open(Ljava/lang/String;)V (light greylist, reflection)
+    Accessing hidden method Ldalvik/system/CloseGuard;->warnIfOpen()V (light greylist, reflection)
+W/Activity: Slow Operation: Activity com.example.httprequest/.MainActivity onCreate took 567ms
+W/Looper: Slow Looper main: Activity com.example.httprequest/.MainActivity is 1019ms late (wall=836ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.LaunchActivityItem] lifecycleRequest=android.app.servertransaction.ResumeActivityItem }) because of 1 msg, msg 1 took 2134ms (h=android.app.ActivityThread$H w=110)
+W/ple.httpreques: Accessing hidden method Lcom/android/org/conscrypt/OpenSSLSocketImpl;->setAlpnProtocols([B)V (light greylist, reflection)
+W/Looper: Slow Looper main: Activity com.example.httprequest/.MainActivity is 1856ms late (wall=6ms running=0ms ClientTransaction{ lifecycleRequest=android.app.servertransaction.PauseActivityItem }) because of 2 msg, msg 1 took 2134ms (h=android.app.ActivityThread$H w=110), msg 2 took 836ms (late=1019ms h=android.app.ActivityThread$H w=159)
+W/Looper: Slow Looper main: Activity com.example.httprequest/.MainActivity is 1864ms late (wall=5ms running=0ms ClientTransaction{ lifecycleRequest=android.app.servertransaction.StopActivityItem }) because of 4 msg, msg 1 took 2134ms (h=android.app.ActivityThread$H w=110), msg 2 took 836ms (late=1019ms h=android.app.ActivityThread$H w=159)
+I/Adreno: QUALCOMM build                   : cf57c9c, I1cb5c4d1cc
+    Build Date                       : 09/23/18
+    OpenGL ES Shader Compiler Version: EV031.25.03.01
+    Local Branch                     : 
+    Remote Branch                    : 
+    Remote Branch                    : 
+    Reconstruct Branch               : 
+    Build Config                     : S L 6.0.7 AArch64
+I/Adreno: PFP: 0x005ff112, ME: 0x005ff066
+I/ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+I/ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasHDRDisplay retrieved: 0
+I/OpenGLRenderer: Initialized EGL, version 1.4
+D/OpenGLRenderer: Swap behavior 2
+W/ple.httpreques: Accessing hidden method Landroid/graphics/Insets;->of(IIII)Landroid/graphics/Insets; (light greylist, linking)
+W/ple.httpreques: Accessing hidden method Lcom/android/org/conscrypt/OpenSSLSocketImpl;->getAlpnSelectedProtocol()[B (light greylist, reflection)
+E/AndroidRuntime: FATAL EXCEPTION: OkHttp Dispatcher
+    Process: com.example.httprequest, PID: 13773
+    java.lang.Error: org.json.JSONException: Value null of type org.json.JSONObject$1 cannot be converted to JSONObject
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1173)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+        at java.lang.Thread.run(Thread.java:764)
+     Caused by: org.json.JSONException: Value null of type org.json.JSONObject$1 cannot be converted to JSONObject
+        at org.json.JSON.typeMismatch(JSON.java:112)
+        at org.json.JSONObject.<init>(JSONObject.java:163)
+        at org.json.JSONObject.<init>(JSONObject.java:176)
+        at com.example.httprequest.Post$postAPI$1.onResponse(Post.kt:56)
+        at okhttp3.RealCall$AsyncCall.execute(RealCall.java:153)
+        at okhttp3.internal.NamedRunnable.run(NamedRunnable.java:32)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
+        at java.lang.Thread.run(Thread.java:764) 
+E/AndroidRuntime: FATAL EXCEPTION: OkHttp Dispatcher
+    Process: com.example.httprequest, PID: 13773
+    java.lang.Error: org.json.JSONException: Value null of type org.json.JSONObject$1 cannot be converted to JSONObject
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1173)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+        at java.lang.Thread.run(Thread.java:764)
+     Caused by: org.json.JSONException: Value null of type org.json.JSONObject$1 cannot be converted to JSONObject
+        at org.json.JSON.typeMismatch(JSON.java:112)
+        at org.json.JSONObject.<init>(JSONObject.java:163)
+        at org.json.JSONObject.<init>(JSONObject.java:176)
+        at com.example.httprequest.Post$getResult$1.onResponse(Post.kt:96)
+        at okhttp3.RealCall$AsyncCall.execute(RealCall.java:153)
+        at okhttp3.internal.NamedRunnable.run(NamedRunnable.java:32)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) 
+        at java.lang.Thread.run(Thread.java:764) 
+I/Process: Sending signal. PID: 13773 SIG: 9
+
+
