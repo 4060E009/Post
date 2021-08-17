@@ -1,0 +1,152 @@
+Post.kt
+**
+package com.example.httprequest
+
+import android.util.Log
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
+
+val TAG = "HTTP-Test"
+
+data class User(
+    val ProjectName : String,
+    val ResidentSerialNumber : String,
+    val PhoneID : String,
+    val houseNumber : String,
+    val address : String,
+    val floor : String,
+    val symbol : String,
+    val name : String,
+    val gasNumber : String,
+    val points : String
+)
+//因member多層則與其他資料分開來，另外寫成另一個data class
+data class Member (
+    val residentSerialNumber : String
+)
+
+class Post() {
+
+    var client: OkHttpClient? = null
+    var request: Request? = null
+    val builder = FormBody.Builder()
+    private val baseUrl = "https://asia-east2-ductech-cms.cloudfunctions.net/"
+
+    init {
+        builder.add("ProjectName","DUCCMS")
+        builder.add("HouseSerialNumber","123456789")
+        val formBody = builder.build()
+        client = OkHttpClient()
+        request = Request.Builder()
+            .method("POST",formBody)
+            .url(baseUrl + "GetAllProjectNam")
+            .url(baseUrl + "BindUserData")
+            .build()
+        
+    }
+
+    fun postAPI() {
+        client?.newCall(request)?.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure: " + e)
+                onRequestListener?.onError()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body()?.string()
+                val itemList = JSONObject(responseStr)
+
+                onRequestListener?.onSuccess(itemList)
+
+            }
+        })
+    }
+
+//    fun getSerialNumber() : User? {
+//        var myUser: User? = null
+//        client?.newCall(request)?.enqueue(object : Callback {
+//            override fun onFailure(call: Call, e: IOException) {
+//                Log.d(TAG, "onFailure: " + e)
+//            }
+//
+//            override fun onResponse(call: Call, response: Response) {
+//                val responseStr = response.body()?.string()
+//                val itemList = JSONObject(responseStr)
+//
+//                onRequestListener?.onSuccess(itemList)
+//            }
+//        })
+//        return myUser               //為異步，則無法return(onCreate = null)
+//    }
+
+    var onRequestListener : OnRequestListener? = null
+
+    fun getResult(listener: OnRequestListener) {
+
+        this.onRequestListener = listener
+
+        var myUser: User
+        client?.newCall(request)?.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure: " + e)
+                onRequestListener?.onError()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body()?.string()
+                val itemList = JSONObject(responseStr)
+
+                myUser = User(
+                    ProjectName = itemList.getString("ProjectName"),
+                    ResidentSerialNumber = itemList.getString("ResidentSerialNumber"),
+                    PhoneID = itemList.getString("PhoneID"),
+                    houseNumber = itemList.getString("houseNumber"),
+                    address = itemList.getString("address"),
+                    floor = itemList.getString("floor"),
+                    symbol = itemList.getString("symbol"),
+                    name = itemList.getString("name"),
+                    gasNumber = itemList.getString("gasNumber"),
+                    points = itemList.getString("points")
+                )
+                onRequestListener?.onSuccess(myUser)
+            }
+        })
+    }
+
+    interface OnRequestListener {
+        fun onSuccess(result: Any)
+        fun onError()
+    }
+}
+========================================
+MainActivity.kt
+**
+package com.example.httprequest
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import org.json.JSONArray
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        var data = ""
+        val post = Post()
+        post.postAPI()
+
+        post.getResult(object: Post.OnRequestListener {
+            override fun onSuccess(result: Any) {
+                data = result as String
+            }
+
+            override fun onError() {
+                Log.d(TAG, "Failed" )
+            }
+        })
+
+    }
+}
