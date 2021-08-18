@@ -112,7 +112,7 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
+                    val itemList = JSONArray(responseStr)
                     getUserMail = GetUserMail(
                         settingTime = itemList.getString("settingTime"),
                         receiveTime = itemList.getString("receiveTime"),
