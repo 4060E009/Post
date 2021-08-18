@@ -113,6 +113,8 @@ class Post() {
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONArray(responseStr)
+                    log.d(TAG, "itemList: " + itemList)
+                    // 底下先不要做，先看轉成JSONArray有沒有成功，以及裡面的內容為何。
                     getUserMail = GetUserMail(
                         settingTime = itemList.getString("settingTime"),
                         receiveTime = itemList.getString("receiveTime"),
