@@ -413,31 +413,30 @@ class Post() {
     }
 
         //所有社區
-//    fun GetAllProjectName(listener: OnRequestListener) {
-//        onRequestListener = listener
-//        var request: Request? = null
-//        val builder = FormBody.Builder()
-//        val formBody = builder.build()
-//        request = Request.Builder()
-//            .method("POST",formBody)
-//            .url(baseUrl + "GetAllProjectName")
-//            .build()
-//        client?.newCall(request)?.enqueue(object : Callback {
-//            override fun onFailure(call: Call, e: IOException) {
-//                Log.d(TAG, "onFailure: " + e)
-//                onRequestListener?.onError()
-//            }
-//
-//            lateinit var bindUserDat: BindUserDat
-//            override fun onResponse(call: Call, response: Response) {
-//                val responseStr = response.body()?.string()
-//                val itemList = JSONArray(responseStr)
-//                // TODO("response to json object")
-//                onRequestListener?.onSuccess(itemList)
-//                Log.d(TAG, "" + itemList)
-//            }
-//        })
-//    }
+    fun GetAllProjectName(listener: OnRequestListener) {
+        onRequestListener = listener
+        var request: Request? = null
+        val builder = FormBody.Builder()
+        val formBody = builder.build()
+        request = Request.Builder()
+            .method("POST",formBody)
+            .url(baseUrl + "GetAllProjectName")
+            .build()
+        client?.newCall(request)?.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure: " + e)
+                onRequestListener?.onError()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body()?.string()
+                val itemList = JSONObject(responseStr)
+                // TODO("response to json object")
+                onRequestListener?.onSuccess(itemList)
+                Log.d(TAG, "" + itemList)
+            }
+        })
+    }
 
     //用戶資訊
     fun BindUserData(projectName: String, residentSerialNumber: String, phoneID: String, listener: OnRequestListener) {
@@ -570,7 +569,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -612,7 +610,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -660,7 +657,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -701,7 +697,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -754,7 +749,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -810,7 +804,7 @@ class Post() {
     }
 
     //用戶取消公設預約
-    fun UserDeleteReservaion(projectName: String, ResSN: String, Point:Int,Time:String, Identify:String,listener: OnRequestListener) {
+    fun UserDeleteReservaion(projectName: String, ResSN: String, Point:Int, Time:String, Identify:String,listener: OnRequestListener) {
         onRequestListener = listener
         var request: Request? = null
         val builder = FormBody.Builder()
@@ -845,7 +839,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -883,7 +876,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -973,7 +965,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -1054,7 +1045,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -1097,13 +1087,12 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
 
     //上傳瓦斯度數
-    fun RegisterGas(projectName: String, HouseSN: String, BookTime:String,Booker:String, Degree:String, GasID:String,  listener: OnRequestListener) {
+    fun RegisterGas(projectName: String, HouseSN: String, BookTime:String, Booker:String, Degree:String, GasID:String,  listener: OnRequestListener) {
         onRequestListener = listener
         var request: Request? = null
         val builder = FormBody.Builder()
@@ -1139,7 +1128,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -1180,7 +1168,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -1225,7 +1212,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
@@ -1264,7 +1250,6 @@ class Post() {
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
                 }
-
             }
         })
     }
