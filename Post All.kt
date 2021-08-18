@@ -458,7 +458,6 @@ class Post() {
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
                 
-
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
