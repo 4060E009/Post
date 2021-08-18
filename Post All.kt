@@ -234,9 +234,6 @@ class MainActivity : AppCompatActivity() {
 //                Log.d(TAG, "onSuccess: result" + result)
 //            }
 //        })
-
-
-
     }
 }
 ================================================================================================
@@ -281,7 +278,6 @@ data class GetUserMail(
     val mailNumber : String
 )
 
-
 data class GetYearCalendar(
     val calendarDate : String,
     val settingTime : String,
@@ -299,6 +295,7 @@ data class GetUserAllAnnouncement(
 //    val fileName : [String],
 //    val fileUrl : [String]
 )
+
 data class UserGetAllAmenities(
     val amenitiesName : String,
     val point : String,
@@ -411,7 +408,7 @@ class Post() {
     init {
         client = OkHttpClient()
     }
-
+    
         //所有社區
     fun GetAllProjectName(listener: OnRequestListener) {
         onRequestListener = listener
