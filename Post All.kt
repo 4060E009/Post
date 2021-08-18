@@ -457,9 +457,13 @@ class Post() {
             lateinit var bindUserDat: BindUserDat
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-                val itemList = JSONObject(responseStr)
+                
 
-                bindUserDat = BindUserDat(
+                if (responseStr == "null" || responseStr == "Error"){
+                    onRequestListener?.onError()
+                }else{
+                    val itemList = JSONObject(responseStr)
+                    bindUserDat = BindUserDat(
                         houseNumber = itemList.getString("houseNumber"),
                         address = itemList.getString("address"),
                         floor = itemList.getString("floor"),
@@ -469,10 +473,10 @@ class Post() {
                         gasNumber = itemList.getString("gasNumber"),
                         points = itemList.getString("points")
                     )
-
                     // TODO("response to json object")
-                onRequestListener?.onSuccess(itemList)
+                    onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
+                }
             }
         })
     }
@@ -1225,7 +1229,7 @@ class Post() {
             //lateinit var updateUserName: UpdateUserName
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-                
+
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
