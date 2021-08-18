@@ -183,5 +183,92 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ===============================================================================
-run
+postman!!
 **
+[
+    {
+        "projectName": "DUCCMS",
+        "settingTime": "2021/07/15 14:12",
+        "name": "許宅邸",
+        "houseName": "202號",
+        "floor": "6樓",
+        "symbol": "之1",
+        "type": "一般包裹",
+        "mailNumber": "P210715–001",
+        "placement": "A側儲藏室",
+        "status": "已退回",
+        "remarks": "123",
+        "receiveManger": "管理員",
+        "returnForm": "qewqwe",
+        "sort": "3",
+        "receiveTime": "-"
+    },
+    {
+        "projectName": "DUCCMS",
+        "settingTime": "2021/06/11 13:03",
+        "name": "許宅邸",
+        "houseName": "202號",
+        "floor": "6樓",
+        "symbol": "之1",
+        "type": "一般包裹",
+        "mailNumber": "P210611–001",
+        "placement": "A側儲藏室",
+        "status": "未領取",
+        "remarks": "",
+        "receiveManger": "管理員",
+        "returnForm": "-",
+        "sort": "1",
+        "receiveTime": "-"
+    },
+    {
+        "projectName": "DUCCMS",
+        "settingTime": "2021/07/15 14:12",
+        "name": "許宅邸",
+        "houseName": "202號",
+        "floor": "6樓",
+        "symbol": "之1",
+        "type": "冷藏包裹",
+        "mailNumber": "P210715–002",
+        "placement": "A側儲藏室",
+        "status": "已領取",
+        "remarks": "1",
+        "receiveManger": "管理員",
+        "returnForm": "-",
+        "sort": "2",
+        "receiveTime": "2021/07/15 14:13"
+    },
+    {
+        "projectName": "DUCCMS",
+        "settingTime": "2020/11/24 18:27",
+        "name": "許宅邸",
+        "houseName": "202號",
+        "floor": "6樓",
+        "symbol": "之1",
+        "type": "一般包裹",
+        "mailNumber": "P201124–001",
+        "placement": "A側儲藏室",
+        "status": "未領取",
+        "remarks": "",
+        "receiveManger": "管理員",
+        "returnForm": "-",
+        "sort": "1",
+        "receiveTime": "-"
+    },
+    {
+        "projectName": "DUCCMS",
+        "settingTime": "2020/12/11 10:55",
+        "name": "許宅邸",
+        "houseName": "202號",
+        "floor": "6樓",
+        "symbol": "之1",
+        "type": "一般包裹",
+        "mailNumber": "P201211–001",
+        "placement": "A側儲藏室",
+        "status": "未領取",
+        "remarks": "",
+        "receiveManger": "管理員",
+        "returnForm": "-",
+        "sort": "1",
+        "receiveTime": "-"
+    }
+]
