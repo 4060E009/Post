@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSuccess(result: Any) {
-                Log.d(TAG, "onSuccess: result" + result)
+                Log.d(TAG, "onSuccess: result BindUserData -> " + result)
             }
         })
 
@@ -47,12 +47,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSuccess(result: Any) {
-                Log.d(TAG, "onSuccess: result" + result)
+                Log.d(TAG, "onSuccess: result GetUserMain -> " + result)
             }
         })
 
         //行事曆資訊
-        post.GetYearCalendar( "DUCCMS", "123456789", object: Post.OnRequestListener {
+
+        post.GetYearCalendar( "DUCCMS", "2021", object: Post.OnRequestListener {
             override fun onError() {
                 Log.d(TAG, "onError: ")
             }
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "onSuccess: result" + result)
             }
         })
-
+/*
         //公告資訊
         post.GetUserAllAnnouncement( "DUCCMS", object: Post.OnRequestListener {
             override fun onError() {
@@ -237,6 +238,8 @@ class MainActivity : AppCompatActivity() {
 //                Log.d(TAG, "onSuccess: result" + result)
 //            }
 //        })
+
+         */
     }
 }
 ================================================================================================
@@ -249,6 +252,7 @@ import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+import kotlin.reflect.typeOf
 
 val TAG = "HTTP-Test"
 
@@ -412,7 +416,7 @@ class Post() {
         client = OkHttpClient()
     }
 
-        //所有社區
+    //所有社區
     fun GetAllProjectName(listener: OnRequestListener) {
         onRequestListener = listener
         var request: Request? = null
@@ -460,7 +464,7 @@ class Post() {
             lateinit var bindUserDat: BindUserDat
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-                
+
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
@@ -502,6 +506,7 @@ class Post() {
             }
 
             lateinit var getUserMail: GetUserMail
+            var arrayList = arrayListOf<GetUserMail>()
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
@@ -510,23 +515,28 @@ class Post() {
                 }else{
                     val itemList = JSONArray(responseStr)
                     Log.d(TAG, "itemList: " + itemList )
-//                    getUserMail = GetUserMail(
-//                        settingTime = itemList.getString("settingTime"),
-//                        receiveTime = itemList.getString("receiveTime"),
-//                        floor = itemList.getString("floor"),
-//                        receiveManger = itemList.getString("receiveManger"),
-//                        name = itemList.getString("name"),
-//                        status = itemList.getString("status"),
-//                        placement = itemList.getString("placement"),
-//                        sort = itemList.getString("sort"),
-//                        symbol = itemList.getString("symbol"),
-//                        type = itemList.getString("type"),
-//                        projectName = itemList.getString("projectName"),
-//                        returnForm = itemList.getString("returnForm"),
-//                        houseName = itemList.getString("houseName"),
-//                        remarks = itemList.getString("remarks"),
-//                        mailNumber= itemList.getString("mailNumber")
-//                    )
+                    for (i in 0 until itemList.length()) {
+//                        Log.d(TAG, "onResponse: item " + i + "-> " + itemList[i])
+//                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("name"))
+                        getUserMail = GetUserMail(
+                            settingTime = itemList.getJSONObject(i).getString("settingTime"),
+                            receiveTime = itemList.getJSONObject(i).getString("receiveTime"),
+                            floor = itemList.getJSONObject(i).getString("floor"),
+                            receiveManger = itemList.getJSONObject(i).getString("receiveManger"),
+                            name =itemList.getJSONObject(i).getString("name"),
+                            status = itemList.getJSONObject(i).getString("status"),
+                            placement = itemList.getJSONObject(i).getString("placement"),
+                            sort = itemList.getJSONObject(i).getString("sort"),
+                            symbol = itemList.getJSONObject(i).getString("symbol"),
+                            type = itemList.getJSONObject(i).getString("type"),
+                            projectName = itemList.getJSONObject(i).getString("projectName"),
+                            returnForm = itemList.getJSONObject(i).getString("returnForm"),
+                            houseName = itemList.getJSONObject(i).getString("houseName"),
+                            remarks = itemList.getJSONObject(i).getString("remarks"),
+                            mailNumber= itemList.getJSONObject(i).getString("mailNumber"),
+                        )
+                        arrayList.add(getUserMail)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
@@ -534,6 +544,7 @@ class Post() {
             }
         })
     }
+
 
     //行事曆資訊
     fun GetYearCalendar(projectName: String, Year: String,listener: OnRequestListener) {
@@ -552,7 +563,7 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<GetYearCalendar>()
             lateinit var getYearCalendar: GetYearCalendar
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
@@ -560,13 +571,17 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    getYearCalendar = GetYearCalendar(
-                        calendarDate = itemList.getString("calendarDate"),
-                        settingTime = itemList.getString("settingTime"),
-                        title = itemList.getString("title"),
-                        place = itemList.getString("place"),
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("title"))
+                        getYearCalendar = GetYearCalendar(
+                            calendarDate = itemList.getJSONObject(i).getString("calendarDate"),
+                            settingTime = itemList.getJSONObject(i).getString("settingTime"),
+                            title = itemList.getJSONObject(i).getString("title"),
+                            place = itemList.getJSONObject(i).getString("place"),
+                        )
+                        arrayList.add(getYearCalendar)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
@@ -704,9 +719,9 @@ class Post() {
 
     //用戶公設預約
     fun UserAddNewReservation(projectName: String, AmenitiesName: String, AmenitiesIdentify:String,
-                             ReservationDate:String, ReservationTime:String, Name:String, HouseName:String,
-                             Floor:String, Symbol:String, ResidentSerialNumber:String, ReservationNumber:Int,
-                             Point:Int, Identify:String, Time:String,listener: OnRequestListener) {
+                              ReservationDate:String, ReservationTime:String, Name:String, HouseName:String,
+                              Floor:String, Symbol:String, ResidentSerialNumber:String, ReservationNumber:Int,
+                              Point:Int, Identify:String, Time:String,listener: OnRequestListener) {
         onRequestListener = listener
         var request: Request? = null
         val builder = FormBody.Builder()
@@ -735,7 +750,7 @@ class Post() {
                 onRequestListener?.onError()
             }
 
-//            lateinit var userAddNewReservation: UserAddNewReservation
+            //            lateinit var userAddNewReservation: UserAddNewReservation
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
