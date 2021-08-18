@@ -278,6 +278,7 @@ data class GetUserMail(
     val mailNumber : String
 )
 
+
 data class GetYearCalendar(
     val calendarDate : String,
     val settingTime : String,
@@ -295,7 +296,6 @@ data class GetUserAllAnnouncement(
 //    val fileName : [String],
 //    val fileUrl : [String]
 )
-
 data class UserGetAllAmenities(
     val amenitiesName : String,
     val point : String,
@@ -408,7 +408,7 @@ class Post() {
     init {
         client = OkHttpClient()
     }
-    
+
         //所有社區
     fun GetAllProjectName(listener: OnRequestListener) {
         onRequestListener = listener
@@ -551,7 +551,6 @@ class Post() {
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
-
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
@@ -680,7 +679,6 @@ class Post() {
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
-
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
@@ -740,7 +738,7 @@ class Post() {
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONObject(responseStr)
-                    //return: String (點數或”Error”)
+                    //return: String (點數或"Error")
 //                    )
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
@@ -825,12 +823,11 @@ class Post() {
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
-
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONObject(responseStr)
-                    //return: String (點數或”Error”)
+                    //return: String (點數或"Error")
 //                    )
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
@@ -861,7 +858,6 @@ class Post() {
             //lateinit var GetUserPointLog: GetUserPointLog
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-
 
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
@@ -951,12 +947,11 @@ class Post() {
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
-
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONObject(responseStr)
-                    //return: String(“Successful”或”Error”)
+                    //return: String("Successful"或"Error")
 //                    )
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
@@ -1031,12 +1026,11 @@ class Post() {
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
-
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONObject(responseStr)
-                    //return: String(“Successful”或”Error”)
+                    //return: String("Successful"或"Error")
 //                    )
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
@@ -1067,7 +1061,6 @@ class Post() {
             lateinit var userGetGas: UserGetGas
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-
 
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
@@ -1114,12 +1107,11 @@ class Post() {
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
-
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONObject(responseStr)
-                    //return: String(“Successful”或”Error”)
+                    //return: String("Successful"或"Error")
 //                    )
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
@@ -1150,7 +1142,6 @@ class Post() {
             lateinit var userGetGasLog: UserGetGasLog
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-
 
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
@@ -1188,7 +1179,6 @@ class Post() {
             lateinit var userGetMagFee: UserGetMagFee
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-
 
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
@@ -1235,13 +1225,12 @@ class Post() {
             //lateinit var updateUserName: UpdateUserName
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-
-
+                
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONObject(responseStr)
-                    //return: String(“Successful”或”Error”)
+                    //return: String("Successful"或"Error")
 //                    )
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
@@ -1250,7 +1239,7 @@ class Post() {
             }
         })
     }
-    
+
     interface OnRequestListener {
         fun onSuccess(result: Any)
         fun onError()
