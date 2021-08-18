@@ -403,8 +403,6 @@ data class UserGetMagFee(
     val isPay : Boolean
 )
 
-
-
 class Post() {
     var client: OkHttpClient? = null
     private var onRequestListener : OnRequestListener? = null
@@ -812,8 +810,7 @@ class Post() {
     }
 
     //用戶取消公設預約
-    fun UserDeleteReservaion(projectName: String, ResSN: String, Point:Int,
-                            Time:String, Identify:String,listener: OnRequestListener) {
+    fun UserDeleteReservaion(projectName: String, ResSN: String, Point:Int,Time:String, Identify:String,listener: OnRequestListener) {
         onRequestListener = listener
         var request: Request? = null
         val builder = FormBody.Builder()
@@ -1022,8 +1019,7 @@ class Post() {
     }
 
     //新增留言內容
-    fun SendMessage(projectName: String, MessageTime: String, MessageID:String,
-                    Content:String, IsManager:Boolean, listener: OnRequestListener) {
+    fun SendMessage(projectName: String, MessageTime: String, MessageID:String, Content:String, IsManager:Boolean, listener: OnRequestListener) {
         onRequestListener = listener
         var request: Request? = null
         val builder = FormBody.Builder()
@@ -1107,8 +1103,7 @@ class Post() {
     }
 
     //上傳瓦斯度數
-    fun RegisterGas(projectName: String, HouseSN: String, BookTime:String,
-                    Booker:String, Degree:String, GasID:String,  listener: OnRequestListener) {
+    fun RegisterGas(projectName: String, HouseSN: String, BookTime:String,Booker:String, Degree:String, GasID:String,  listener: OnRequestListener) {
         onRequestListener = listener
         var request: Request? = null
         val builder = FormBody.Builder()
@@ -1273,9 +1268,7 @@ class Post() {
             }
         })
     }
-
-
-
+    
     interface OnRequestListener {
         fun onSuccess(result: Any)
         fun onError()
