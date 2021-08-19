@@ -17,17 +17,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+/*
         //所有社區
-//        post.GetAllProjectName( object: Post.OnRequestListener {
-//            override fun onError() {
-//                Log.d(TAG, "onError: ")
-//            }
-//
-//            override fun onSuccess(result: Any) {
-//                Log.d(TAG, "onSuccess: result" + result)
-//            }
-//        })
+        post.GetAllProjectName( object: Post.OnRequestListener {
+            override fun onError() {
+                Log.d(TAG, "onError: ")
+            }
+
+            override fun onSuccess(result: Any) {
+                Log.d(TAG, "onSuccess: result" + result)
+            }
+        })
 
         //用戶資訊
         post.BindUserData( "DUCCMS", "2345", "123456789", object: Post.OnRequestListener {
@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         })
 
         //行事曆資訊
-
         post.GetYearCalendar( "DUCCMS", "2021", object: Post.OnRequestListener {
             override fun onError() {
                 Log.d(TAG, "onError: ")
@@ -62,13 +61,12 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "onSuccess: result" + result)
             }
         })
-/*
+
         //公告資訊
         post.GetUserAllAnnouncement( "DUCCMS", object: Post.OnRequestListener {
             override fun onError() {
                 Log.d(TAG, "onError: ")
             }
-
             override fun onSuccess(result: Any) {
                 Log.d(TAG, "onSuccess: result" + result)
             }
@@ -79,14 +77,26 @@ class MainActivity : AppCompatActivity() {
             override fun onError() {
                 Log.d(TAG, "onError: ")
             }
-
             override fun onSuccess(result: Any) {
                 Log.d(TAG, "onSuccess: result" + result)
             }
         })
 
         //已預約時間人數
-        post.UserGetDateReservation( "DUCCMS","123456789", object: Post.OnRequestListener {
+        post.UserGetDateReservation( "DUCCMS","", object: Post.OnRequestListener {
+            override fun onError() {
+                Log.d(TAG, "onError: ")
+            }
+            override fun onSuccess(result: Any) {
+                Log.d(TAG, "onSuccess: result" + result)
+            }
+        })
+
+
+        //用戶公設預約
+        post.UserAddNewReservation( "DUCCMS","會議室","", "2" ,"08:00",
+            "許宅邸","202號","6樓","之1","",1,123,
+            "Ame202012031411","", object: Post.OnRequestListener {
             override fun onError() {
                 Log.d(TAG, "onError: ")
             }
@@ -95,151 +105,152 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "onSuccess: result" + result)
             }
         })
-
-        //用戶公設預約
-//        post.UserAddNewReservation( "DUCCMS","123456789", object: Post.OnRequestListener {
-//            override fun onError() {
-//                Log.d(TAG, "onError: ")
-//            }
-//
-//            override fun onSuccess(result: Any) {
-//                Log.d(TAG, "onSuccess: result" + result)
-//            }
-//        })
 
         //公設預約紀錄
         post.GetUserALLRese( "DUCCMS","123456789", object: Post.OnRequestListener {
             override fun onError() {
                 Log.d(TAG, "onError: ")
             }
-
             override fun onSuccess(result: Any) {
                 Log.d(TAG, "onSuccess: result" + result)
             }
         })
 
         //用戶取消公設預約
-//        post.UserDeleteReservaion( "DUCCMS","123456789", object: Post.OnRequestListener {
-//            override fun onError() {
-//                Log.d(TAG, "onError: ")
-//            }
-//
-//            override fun onSuccess(result: Any) {
-//                Log.d(TAG, "onSuccess: result" + result)
-//            }
-//        })
-
-        //點數紀錄
-//        post.GetUserPointLog( "DUCCMS","123456789", object: Post.OnRequestListener {
-//            override fun onError() {
-//                Log.d(TAG, "onError: ")
-//            }
-//
-//            override fun onSuccess(result: Any) {
-//                Log.d(TAG, "onSuccess: result" + result)
-//            }
-//        })
-
-        //意見留言資訊
-        post.UserGetMessage( "DUCCMS","123456789", object: Post.OnRequestListener {
+        post.UserDeleteReservaion( "DUCCMS","" ,6193,"","Ame202012031411", object: Post.OnRequestListener {
             override fun onError() {
                 Log.d(TAG, "onError: ")
             }
 
+            override fun onSuccess(result: Any) {
+                Log.d(TAG, "onSuccess: result" + result)
+            }
+        })
+
+        //點數紀錄_ResPointLog
+        post. GetUserPointLog_ResPointLog( "DUCCMS","123456789", object: Post.OnRequestListener {
+            override fun onError() {
+                Log.d(TAG, "onError: ")
+            }
+
+            override fun onSuccess(result: Any) {
+                Log.d(TAG, "onSuccess: result" + result)
+            }
+        })
+
+//        //點數紀錄_DepositPointLog(
+        post.GetUserPointLog_DepositPointLog( "DUCCMS","123456789", object: Post.OnRequestListener {
+            override fun onError() {
+                Log.d(TAG, "onError: ")
+            }
+
+            override fun onSuccess(result: Any) {
+                Log.d(TAG, "onSuccess: result" + result)
+            }
+        })
+
+        //意見留言資訊
+        post.UserGetMessage( "DUCCMS","", object: Post.OnRequestListener {
+            override fun onError() {
+                Log.d(TAG, "onError: ")
+            }
             override fun onSuccess(result: Any) {
                 Log.d(TAG, "onSuccess: result" + result)
             }
         })
 
         //新增留言
-//        post.UserCreateMess( "DUCCMS","123456789", object: Post.OnRequestListener {
-//            override fun onError() {
-//                Log.d(TAG, "onError: ")
-//            }
-//
-//            override fun onSuccess(result: Any) {
-//                Log.d(TAG, "onSuccess: result" + result)
-//            }
-//        })
+        post.UserCreateMess( "DUCCMS","","之1","許宅邸","202號","",
+            "","","","",object: Post.OnRequestListener {
+                override fun onError() {
+                    Log.d(TAG, "onError: ")
+                }
 
-        //留言內容
-        post.UserGetMessChat( "DUCCMS","123456789", object: Post.OnRequestListener {
-            override fun onError() {
-                Log.d(TAG, "onError: ")
-            }
+                override fun onSuccess(result: Any) {
+                    Log.d(TAG, "onSuccess: result" + result)
+                }
+            })
 
-            override fun onSuccess(result: Any) {
-                Log.d(TAG, "onSuccess: result" + result)
-            }
-        })
 
-        //新增留言內容
-//        post.SendMessage( "DUCCMS","123456789", object: Post.OnRequestListener {
-//            override fun onError() {
-//                Log.d(TAG, "onError: ")
-//            }
-//
-//            override fun onSuccess(result: Any) {
-//                Log.d(TAG, "onSuccess: result" + result)
-//            }
-//        })
+                //留言內容
+                post.UserGetMessChat( "DUCCMS","", object : Post.OnRequestListener {
+                    override fun onError() {
+                        Log.d(TAG, "onError: ")
+                    }
 
-        //當期瓦斯抄錶
-        post.UserGetGas( "DUCCMS","123456789", object: Post.OnRequestListener {
-            override fun onError() {
-                Log.d(TAG, "onError: ")
-            }
+                    override fun onSuccess(result: Any) {
+                        Log.d(TAG, "onSuccess: result" + result)
+                    }
+                })
 
-            override fun onSuccess(result: Any) {
-                Log.d(TAG, "onSuccess: result" + result)
-            }
-        })
 
-        //上傳瓦斯度數
-//        post.RegisterGas( "DUCCMS","123456789", object: Post.OnRequestListener {
-//            override fun onError() {
-//                Log.d(TAG, "onError: ")
-//            }
-//
-//            override fun onSuccess(result: Any) {
-//                Log.d(TAG, "onSuccess: result" + result)
-//            }
-//        })
+                //新增留言內容
+                post.SendMessage( "DUCCMS","","","",false, object : Post.OnRequestListener {
+                    override fun onError() {
+                        Log.d(TAG, "onError: ")
+                    }
 
-        //瓦斯抄錶紀錄
-        post.UserGetGasLog( "DUCCMS","123456789", object: Post.OnRequestListener {
-            override fun onError() {
-                Log.d(TAG, "onError: ")
-            }
+                    override fun onSuccess(result: Any) {
+                        Log.d(TAG, "onSuccess: result" + result)
+                    }
+                })
 
-            override fun onSuccess(result: Any) {
-                Log.d(TAG, "onSuccess: result" + result)
-            }
-        })
+                //當期瓦斯抄錶
+                post.UserGetGas( "DUCCMS","", object : Post.OnRequestListener {
+                    override fun onError() {
+                        Log.d(TAG, "onError: ")
+                    }
 
-        //當期管理費
-        post.UserGetMagFee(object: Post.OnRequestListener {
-            override fun onError() {
-                Log.d(TAG, "onError: ")
-            }
+                    override fun onSuccess(result: Any) {
+                        Log.d(TAG, "onSuccess: result" + result)
+                    }
+                })
 
-            override fun onSuccess(result: Any) {
-                Log.d(TAG, "onSuccess: result" + result)
-            }
-        })
+                //上傳瓦斯度數
+                post.RegisterGas( "DUCCMS","","","","","", object : Post.OnRequestListener {
+                    override fun onError() {
+                        Log.d(TAG, "onError: ")
+                    }
 
-        //變更用戶名稱
-//        post.UpdateUserName( "DUCCMS","123456789", object: Post.OnRequestListener {
-//            override fun onError() {
-//                Log.d(TAG, "onError: ")
-//            }
-//
-//            override fun onSuccess(result: Any) {
-//                Log.d(TAG, "onSuccess: result" + result)
-//            }
-//        })
+                    override fun onSuccess(result: Any) {
+                        Log.d(TAG, "onSuccess: result" + result)
+                    }
+                })
 
-         */
+                //瓦斯抄錶紀錄
+                post.UserGetGasLog( "DUCCMS","2345", object : Post.OnRequestListener {
+                    override fun onError() {
+                        Log.d(TAG, "onError: ")
+                    }
+
+                    override fun onSuccess(result: Any) {
+                        Log.d(TAG, "onSuccess: result" + result)
+                    }
+                })
+
+                //當期管理費
+                post.UserGetMagFee( object : Post.OnRequestListener {
+                    override fun onError() {
+                        Log.d(TAG, "onError: ")
+                    }
+
+                    override fun onSuccess(result: Any) {
+                        Log.d(TAG, "onSuccess: result" + result)
+                    }
+                })
+
+                //變更用戶名稱
+                post.UpdateUserName( "DUCCMS","","", object : Post.OnRequestListener {
+                    override fun onError() {
+                        Log.d(TAG, "onError: ")
+                    }
+
+                    override fun onSuccess(result: Any) {
+                        Log.d(TAG, "onSuccess: result" + result)
+                    }
+            })
+            */
+
     }
 }
 ================================================================================================
@@ -248,11 +259,12 @@ Post.kt
 package com.example.httprequest
 
 import android.util.Log
+import com.google.gson.stream.JsonToken
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import kotlin.reflect.typeOf
+
 
 val TAG = "HTTP-Test"
 
@@ -339,38 +351,34 @@ data class GetUserALLRese(
     val point : Int,
     val sort : String,
     val identify : String,
-    val amenitiesID : String,
-    val amenitiesURL : String
+    val amenitiesID : String
 )
 
-//data class GetUserPointLog(
-////    val resPointLog : [ResPointLog],
-////    val depositPointLog : [DepositPointLog],
-//
-////    [ResPointLog]
-//    val amenitiesName : String,
-//    val time : String,
-//    val reservationTime : String,
-//    val point : Int,
-//    val reservationNumber : Int,
-//    val isBook : Boolean,
-//    val sort : String,
-//    val amenitiesID : String,
-//    val logID : String
-//
-////    [DepositPointLog]
-//    val manage : String,
-//    val point : Int,
-//    val sort : String,
-//    val title : String,
-//    val time : String,
-//    val logID : String
-//)
+data class GetUserPointLog_ResPointLog(
+
+    val amenitiesName : String,
+    val time : String,
+    val reservationTime : String,
+    val point : Int,
+    val reservationNumber : Int,
+    val isBook : Boolean,
+    val sort : String,
+    val amenitiesID : String,
+    val logID : String
+)
+data class GetUserPointLog_DepositPointLog(
+    val manage : String,
+    val point : Int,
+    val sort : String,
+    val title : String,
+    val time : String,
+    val logID : String
+)
 
 data class UserGetMessage(
     val title : String,
     val time : String,
-    val messageID : Int,
+    val messageID : String,
     val sort : String,
     val isUserRead : Boolean
 )
@@ -378,14 +386,14 @@ data class UserGetMessage(
 data class UserGetMessChat(
     val content : String,
     val messageTime : String,
-    val isManager : Boolean
+//    val isManager : Boolean
 )
 
 data class UserGetGas(
     val openTime : String,
     val closeTime : String,
     val identity : String,
-    val degree : String,
+//    val degree : String,
     val isOpen : Boolean
 )
 
@@ -434,10 +442,16 @@ class Post() {
 
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
-                val itemList = JSONObject(responseStr)
-                // TODO("response to json object")
-                onRequestListener?.onSuccess(itemList)
-                Log.d(TAG, "" + itemList)
+                if (responseStr == "null" || responseStr == "Error"){
+                    onRequestListener?.onError()
+                }else{
+                    onRequestListener?.onSuccess(Any())
+//                    val itemList = JSONObject(responseStr)
+                    // TODO("response to json object")
+//                    onRequestListener?.onSuccess(itemList)
+//                    Log.d(TAG, "" + itemList)
+                }
+
             }
         })
     }
@@ -445,7 +459,7 @@ class Post() {
     //用戶資訊
     fun BindUserData(projectName: String, residentSerialNumber: String, phoneID: String, listener: OnRequestListener) {
         onRequestListener = listener
-        var request: Request? = null
+        val request: Request?
         val builder = FormBody.Builder()
         builder.add("ProjectName", projectName)
         builder.add("ResidentSerialNumber", residentSerialNumber)
@@ -514,7 +528,7 @@ class Post() {
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONArray(responseStr)
-                    Log.d(TAG, "itemList: " + itemList )
+//                    Log.d(TAG, "itemList: " + itemList )
                     for (i in 0 until itemList.length()) {
 //                        Log.d(TAG, "onResponse: item " + i + "-> " + itemList[i])
 //                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("name"))
@@ -545,7 +559,6 @@ class Post() {
         })
     }
 
-
     //行事曆資訊
     fun GetYearCalendar(projectName: String, Year: String,listener: OnRequestListener) {
         onRequestListener = listener
@@ -573,7 +586,7 @@ class Post() {
                 }else{
                     val itemList = JSONArray(responseStr)
                     for (i in 0 until itemList.length()) {
-                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("title"))
+//                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("title"))
                         getYearCalendar = GetYearCalendar(
                             calendarDate = itemList.getJSONObject(i).getString("calendarDate"),
                             settingTime = itemList.getJSONObject(i).getString("settingTime"),
@@ -606,7 +619,7 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<GetUserAllAnnouncement>()
             lateinit var getUserAllAnnouncement: GetUserAllAnnouncement
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
@@ -614,15 +627,19 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    getUserAllAnnouncement = GetUserAllAnnouncement(
-                        postTime = itemList.getString("postTime"),
-                        type = itemList.getString("type"),
-                        title = itemList.getString("title"),
-                        announcer = itemList.getString("announcer"),
-                        isTop = itemList.getBoolean("isTop"),
-                        content = itemList.getString("content"),
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+//                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("postTime"))
+                        getUserAllAnnouncement = GetUserAllAnnouncement(
+                            postTime = itemList.getJSONObject(i).getString("postTime"),
+                            type = itemList.getJSONObject(i).getString("type"),
+                            title = itemList.getJSONObject(i).getString("title"),
+                            announcer = itemList.getJSONObject(i).getString("announcer"),
+                            isTop = itemList.getJSONObject(i).getBoolean("isTop"),
+                            content = itemList.getJSONObject(i).getString("content"),
+                        )
+                        arrayList.add(getUserAllAnnouncement)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
@@ -647,29 +664,32 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<UserGetAllAmenities>()
             lateinit var userGetAllAmenities: UserGetAllAmenities
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
-
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    userGetAllAmenities = UserGetAllAmenities(
-                        amenitiesName = itemList.getString("amenitiesName"),
-                        point = itemList.getString("point"),
-                        costMode = itemList.getInt("costMode"),
-                        reservationMode = itemList.getInt("reservationMode"),
-                        costUnit = itemList.getInt("costUnit"),
-                        timeLimit = itemList.getInt("timeLimit"),
-                        accommodate = itemList.getInt("accommodate"),
-                        content = itemList.getString("content"),
-                        isOpen = itemList.getBoolean("isOpen"),
-                        imageUrl = itemList.getString("imageUrl"),
-                        identify = itemList.getString("identify")
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+//                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("amenitiesName"))
+                        userGetAllAmenities = UserGetAllAmenities(
+                            amenitiesName = itemList.getJSONObject(i).getString("amenitiesName"),
+                            point = itemList.getJSONObject(i).getString("point"),
+                            costMode = itemList.getJSONObject(i).getInt("costMode"),
+                            reservationMode = itemList.getJSONObject(i).getInt("reservationMode"),
+                            costUnit = itemList.getJSONObject(i).getInt("costUnit"),
+                            timeLimit = itemList.getJSONObject(i).getInt("timeLimit"),
+                            accommodate = itemList.getJSONObject(i).getInt("accommodate"),
+                            content = itemList.getJSONObject(i).getString("content"),
+                            isOpen = itemList.getJSONObject(i).getBoolean("isOpen"),
+                            imageUrl = itemList.getJSONObject(i).getString("imageUrl"),
+                            identify = itemList.getJSONObject(i).getString("identify")
+                        )
+                        arrayList.add(userGetAllAmenities)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
@@ -681,7 +701,7 @@ class Post() {
     //已預約時間人數
     fun UserGetDateReservation(projectName: String,AmenititesID: String,listener: OnRequestListener) {
         onRequestListener = listener
-        var request: Request? = null
+        val request: Request?
         val builder = FormBody.Builder()
         builder.add("ProjectName", projectName)
         builder.add("AmenititesID",AmenititesID)
@@ -695,7 +715,7 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<UserGetDateReservation>()
             lateinit var userGetDateReservation: UserGetDateReservation
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
@@ -703,12 +723,16 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    userGetDateReservation = UserGetDateReservation(
-                        date = itemList.getString("date"),
-                        time = itemList.getString("time"),
-                        people = itemList.getInt("people"),
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+//                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("amenitiesName"))
+                        userGetDateReservation = UserGetDateReservation(
+                            date = itemList.getJSONObject(i).getString("date"),
+                            time = itemList.getJSONObject(i).getString("time"),
+                            people = itemList.getJSONObject(i).getInt("people"),
+                        )
+                        arrayList.add(userGetDateReservation)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
@@ -758,12 +782,11 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    //return: String (點數或"Error")
-//                    )
-                    // TODO("response to json object")
-                    onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+                    onRequestListener?.onSuccess(Any())
+//                    val itemList = JSONArray(responseStr)
+//                    // TODO("response to json object")
+//                    onRequestListener?.onSuccess(itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
@@ -786,7 +809,7 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<GetUserALLRese>()
             lateinit var getUserALLRese: GetUserALLRese
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
@@ -794,23 +817,26 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    Log.d(TAG, "itemList: " + itemList )
-                    getUserALLRese = GetUserALLRese(
-                        reservationDate = itemList.getString("reservationDate"),
-                        enterTime = itemList.getString("enterTime"),
-                        leaveTime = itemList.getString("leaveTime"),
-                        amenitiesName = itemList.getString("amenitiesName"),
-                        reservationTime = itemList.getString("reservationTime"),
-                        name = itemList.getString("name"),
-                        residentSerialNumber = itemList.getString("residentSerialNumber"),
-                        reservationNumber = itemList.getInt("reservationNumber"),
-                        point = itemList.getInt("point"),
-                        sort = itemList.getString("sort"),
-                        identify = itemList.getString("identify"),
-                        amenitiesID = itemList.getString("amenitiesID"),
-                        amenitiesURL = itemList.getString("amenitiesURL"),
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+//                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("reservationDate"))
+//                        Log.d(TAG, "itemList: " + itemList)
+                        getUserALLRese = GetUserALLRese(
+                            reservationDate = itemList.getJSONObject(i).getString("reservationDate"),
+                            enterTime = itemList.getJSONObject(i).getString("enterTime"),
+                            leaveTime = itemList.getJSONObject(i).getString("leaveTime"),
+                            amenitiesName = itemList.getJSONObject(i).getString("amenitiesName"),
+                            reservationTime = itemList.getJSONObject(i).getString("reservationTime"),
+                            name =itemList.getJSONObject(i).getString("name"),
+                            residentSerialNumber = itemList.getJSONObject(i).getString("residentSerialNumber"),
+                            reservationNumber = itemList.getJSONObject(i).getInt("reservationNumber"),
+                            point = itemList.getJSONObject(i).getInt("point"),
+                            sort = itemList.getJSONObject(i).getString("sort"),
+                            identify = itemList.getJSONObject(i).getString("identify"),
+                            amenitiesID = itemList.getJSONObject(i).getString("amenitiesID"),
+                        )
+                        arrayList.add(getUserALLRese)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
@@ -847,19 +873,18 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    //return: String (點數或"Error")
-//                    )
-                    // TODO("response to json object")
-                    onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+                    onRequestListener?.onSuccess(Any())
+//                    val itemList = JSONObject(responseStr)
+//                    // TODO("response to json object")
+//                    onRequestListener?.onSuccess(itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
     }
 
-    //點數紀錄
-    fun GetUserPointLog(projectName: String, houseSerialNumber: String,  listener: OnRequestListener) {
+    //點數紀錄_ResPointLog
+    fun GetUserPointLog_ResPointLog(projectName: String, houseSerialNumber: String,  listener: OnRequestListener) {
         onRequestListener = listener
         var request: Request? = null
         val builder = FormBody.Builder()
@@ -875,8 +900,8 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
-            //lateinit var GetUserPointLog: GetUserPointLog
+            var arrayList = arrayListOf<GetUserPointLog_ResPointLog>()
+            lateinit var getUserPointLog_ResPointLog: GetUserPointLog_ResPointLog
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
@@ -884,8 +909,61 @@ class Post() {
                     onRequestListener?.onError()
                 }else{
                     val itemList = JSONObject(responseStr)
-                    //TODO("response to json object")
-//                    )
+                        getUserPointLog_ResPointLog = GetUserPointLog_ResPointLog(
+                            amenitiesName =  itemList.getString("amenitiesName"),
+                            time =  itemList.getString("time"),
+                            reservationTime =  itemList.getString("reservationTime"),
+                            point =  itemList.getInt("point"),
+                            reservationNumber =  itemList.getInt("reservationNumber"),
+                            isBook =  itemList.getBoolean("isBook"),
+                            sort =  itemList.getString("sort"),
+                            amenitiesID = itemList.getString("amenitiesID"),
+                            logID = itemList.getString("logID"),
+                        )
+                    // TODO("response to json object")
+                    onRequestListener?.onSuccess(itemList)
+                    Log.d(TAG, "" + itemList)
+                }
+            }
+        })
+    }
+    //點數紀錄_DepositPointLog
+    fun GetUserPointLog_DepositPointLog(projectName: String, houseSerialNumber: String,  listener: OnRequestListener) {
+        onRequestListener = listener
+        var request: Request? = null
+        val builder = FormBody.Builder()
+        builder.add("ProjectName", projectName)
+        builder.add("HouseSerialNumber",houseSerialNumber)
+        val formBody = builder.build()
+        request = Request.Builder()
+            .method("POST",formBody)
+            .url(baseUrl + "GetUserPointLog")
+            .build()
+        client?.newCall(request)?.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure: " + e)
+                onRequestListener?.onError()
+            }
+            var arrayList = arrayListOf<GetUserPointLog_DepositPointLog>()
+            lateinit var getUserPointLog_DepositPointLog: GetUserPointLog_DepositPointLog
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body()?.string()
+
+                if (responseStr == "null" || responseStr == "Error"){
+                    onRequestListener?.onError()
+                }else{
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+                        getUserPointLog_DepositPointLog = GetUserPointLog_DepositPointLog(
+                            manage = itemList.getJSONObject(i).getString("manage"),
+                            point = itemList.getJSONObject(i).getInt("point"),
+                            sort = itemList.getJSONObject(i).getString("sort"),
+                            title = itemList.getJSONObject(i).getString("title"),
+                            time = itemList.getJSONObject(i).getString("time"),
+                            logID = itemList.getJSONObject(i).getString("logID"),
+                        )
+                        arrayList.add(getUserPointLog_DepositPointLog)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
@@ -911,7 +989,7 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<UserGetMessage>()
             lateinit var userGetMessage: UserGetMessage
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
@@ -919,18 +997,21 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    Log.d(TAG, "itemList: " + itemList )
-                    userGetMessage = UserGetMessage(
-                        title = itemList.getString("title"),
-                        time = itemList.getString("time"),
-                        messageID = itemList.getInt("messageID"),
-                        sort = itemList.getString("sort"),
-                        isUserRead = itemList.getBoolean("isUserRead")
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+//                    Log.d(TAG, "itemList: " + itemList )
+                        userGetMessage = UserGetMessage(
+                            title = itemList.getJSONObject(i).getString("title"),
+                            time = itemList.getJSONObject(i).getString("time"),
+                            messageID = itemList.getJSONObject(i).getString("messageID"),
+                            sort = itemList.getJSONObject(i).getString("sort"),
+                            isUserRead = itemList.getJSONObject(i).getBoolean("isUserRead")
+                        )
+                        arrayList.add(userGetMessage)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
@@ -971,12 +1052,11 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    //return: String("Successful"或"Error")
-//                    )
-                    // TODO("response to json object")
-                    onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+                    onRequestListener?.onSuccess(Any())
+//                    val itemList = JSONObject(responseStr)
+//                    // TODO("response to json object")
+//                    onRequestListener?.onSuccess(itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
@@ -999,7 +1079,7 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<UserGetMessChat>()
             lateinit var userGetMessChat: UserGetMessChat
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
@@ -1007,16 +1087,20 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    Log.d(TAG, "itemList: " + itemList )
-                    userGetMessChat = UserGetMessChat(
-                        content = itemList.getString("content"),
-                        messageTime = itemList.getString("messageTime"),
-                        isManager = itemList.getBoolean("isManager"),
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+//                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("isManager"))
+//                        Log.d(TAG, "itemList: " + itemList)
+                        userGetMessChat = UserGetMessChat(
+                            content = itemList.getJSONObject(i).getString("content"),
+                            messageTime = itemList.getJSONObject(i).getString("messageTime"),
+//                            isManager = itemList.getJSONObject(i).getBoolean("isManager")
+                        )
+                        arrayList.add(userGetMessChat)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
@@ -1043,19 +1127,18 @@ class Post() {
                 onRequestListener?.onError()
             }
 
-            //lateinit var sendMessage: SendMessage
+//            lateinit var sendMessage: SendMessage
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
 
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    //return: String("Successful"或"Error")
-//                    )
+                    onRequestListener?.onSuccess(Any())
+//                    val itemList = JSONObject(responseStr)
                     // TODO("response to json object")
-                    onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+//                    onRequestListener?.onSuccess(itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
@@ -1091,12 +1174,12 @@ class Post() {
                         openTime = itemList.getString("openTime"),
                         closeTime = itemList.getString("closeTime"),
                         identity = itemList.getString("identity"),
-                        degree = itemList.getString("degree"),
+//                        degree = itemList.getString("degree"),
                         isOpen = itemList.getBoolean("isOpen")
                     )
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
@@ -1131,12 +1214,11 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    //return: String("Successful"或"Error")
-//                    )
+                    onRequestListener?.onSuccess(Any())
+//                    val itemList = JSONObject(responseStr)
                     // TODO("response to json object")
-                    onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+//                    onRequestListener?.onSuccess(itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
@@ -1159,7 +1241,7 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<UserGetGasLog>()
             lateinit var userGetGasLog: UserGetGasLog
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
@@ -1167,12 +1249,16 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    userGetGasLog = UserGetGasLog(
-                        degree = itemList.getString("degree"),
-                        openTime = itemList.getString("openTime"),
-                        closeTime = itemList.getString("closeTime")
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+//                        Log.d(TAG, "onResponse: object -> " + itemList.getJSONObject(i).getString("degree"))
+                        userGetGasLog = UserGetGasLog(
+                            degree = itemList.getJSONObject(i).getString("degree"),
+                            openTime = itemList.getJSONObject(i).getString("openTime"),
+                            closeTime = itemList.getJSONObject(i).getString("closeTime")
+                        )
+                        arrayList.add(userGetGasLog)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
                     Log.d(TAG, "" + itemList)
@@ -1196,7 +1282,7 @@ class Post() {
                 Log.d(TAG, "onFailure: " + e)
                 onRequestListener?.onError()
             }
-
+            var arrayList = arrayListOf<UserGetMagFee>()
             lateinit var userGetMagFee: UserGetMagFee
             override fun onResponse(call: Call, response: Response) {
                 val responseStr = response.body()?.string()
@@ -1204,21 +1290,24 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    userGetMagFee = UserGetMagFee(
-                        title = itemList.getString("title"),
-                        closeTime = itemList.getString("closeTime"),
-                        identify = itemList.getString("identify"),
-                        isOpen = itemList.getBoolean("isOpen"),
-                        magFee = itemList.getString("magFee"),
-                        oneBarCode = itemList.getString("oneBarCode"),
-                        twoBarCode = itemList.getString("twoBarCode"),
-                        threeBarCode = itemList.getString("threeBarCode"),
-                        isPay = itemList.getBoolean("isPay"),
-                    )
+                    val itemList = JSONArray(responseStr)
+                    for (i in 0 until itemList.length()) {
+                        userGetMagFee = UserGetMagFee(
+                            title = itemList.getJSONObject(i).getString("title"),
+                            closeTime = itemList.getJSONObject(i).getString("closeTime"),
+                            identify = itemList.getJSONObject(i).getString("identify"),
+                            isOpen = itemList.getJSONObject(i).getBoolean("isOpen"),
+                            magFee = itemList.getJSONObject(i).getString("magFee"),
+                            oneBarCode = itemList.getJSONObject(i).getString("oneBarCode"),
+                            twoBarCode = itemList.getJSONObject(i).getString("twoBarCode"),
+                            threeBarCode = itemList.getJSONObject(i).getString("threeBarCode"),
+                            isPay = itemList.getJSONObject(i).getBoolean("isPay")
+                        )
+                        arrayList.add(userGetMagFee)
+                    }
                     // TODO("response to json object")
                     onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
@@ -1250,12 +1339,11 @@ class Post() {
                 if (responseStr == "null" || responseStr == "Error"){
                     onRequestListener?.onError()
                 }else{
-                    val itemList = JSONObject(responseStr)
-                    //return: String("Successful"或"Error")
-//                    )
+                    onRequestListener?.onSuccess(Any())
+//                    val itemList = JSONObject(responseStr)
                     // TODO("response to json object")
-                    onRequestListener?.onSuccess(itemList)
-                    Log.d(TAG, "" + itemList)
+//                    onRequestListener?.onSuccess(itemList)
+//                    Log.d(TAG, "" + itemList)
                 }
             }
         })
